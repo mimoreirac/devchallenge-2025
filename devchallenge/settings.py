@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "widget_tweaks",
     "slippers",
+    "carroscompartidos",
 ]
 
 MIDDLEWARE = [
