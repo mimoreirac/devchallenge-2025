@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "slippers",
     "carroscompartidos",
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [
