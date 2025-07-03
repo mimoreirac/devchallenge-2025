@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Carros Compartidos{% endblock %}
+
+{% block contenido %}
+<h2 class="mb-4">Anuncios disponibles</h2>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for anuncio in anuncios %}
+    <div class="col">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ anuncio.conductor }}</h5>
+                <p class="card-text">
+                    <strong>Desde:</strong> {{ anuncio.desde_donde }}<br>
+                    <strong>Hacia:</strong> {{ anuncio.hacia_donde }}<br>
+                    <strong>Salida:</strong> {{ anuncio.hora_salida }}<br>
+                    <strong>Llegada:</strong> {{ anuncio.hora_llegada }}<br>
+                    <strong>Sector:</strong> {{ anuncio.sector }}<br>
+                    <strong>Contacto:</strong> {{ anuncio.numero_contacto }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No hay anuncios disponibles por ahora.</p>
+    {% endfor %}
+</div>
+{% endblock %}
