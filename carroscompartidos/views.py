@@ -12,6 +12,7 @@ class AnuncioListView(ListView):
     model = Anuncio
     template_name = "carroscompartidos/anuncio_list.html"
     context_object_name = "anuncios"
+    ordering = ["hora_salida"]
 
 
 class AnuncioCreateView(LoginRequiredMixin, CreateView):

@@ -1,21 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Anuncios</title>
-</head>
-<body>
-    <h1>Anuncios de Carros Compartidos</h1>
-    <a href="{% url 'anuncio-create' %}">Crear nuevo anuncio</a>
-    <ul>
-        {% for anuncio in anuncios %}
-            <li>
-                {{ anuncio }} - Contacto: {{ anuncio.numero_contacto }}
-                <a href="{% url 'anuncio-update' pk=anuncio.pk %}">Editar</a>
-            </li>
-        {% empty %}
-            <li>No hay anuncios disponibles.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %} 
+{% block title %}Dashboard de Viajes{% endblock %} 
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Viajes Disponibles</h1>
+  {% if user.is_authenticated %}
+  <a href="{% url 'anuncio-create' %}" class="btn btn-primary">
+    <i class="fa-solid fa-plus"></i> Publicar Anuncio
+  </a>
+  {% endif %}
+</div>
+
+<div class="row">
+  {% for anuncio in anuncios %}
+  <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100 card-anuncio">
+      <div class="card-header">
+        <i class="fa-solid fa-map-pin"></i>
+        <strong>Desde:</strong> {{ anuncio.desde_donde }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">
+            <i class="fa-solid fa-route"></i>
+            Hacia: {{ anuncio.hacia_donde }}
+        </h5>
+        <p class="card-text">
+          <i class="fa-solid fa-user"></i> <strong>Conductor:</strong> {{ anuncio.conductor.username }}<br />
+          <i class="fa-solid fa-clock"></i> <strong>Horario:</strong> {{ anuncio.hora_salida|time:"g:i A" }} - {{ anuncio.hora_llegada|time:"g:i A" }}<br />
+          <i class="fa-solid fa-location-dot"></i> <strong>Sector:</strong> {{ anuncio.get_sector_display }}
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        {% if request.user == anuncio.conductor %}
+        <a href="{% url 'anuncio-update' anuncio.pk %}" class="btn btn-sm btn-outline-light">
+            <i class="fa-solid fa-pencil"></i> Editar
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col">
+    <p>No hay anuncios disponibles en este momento. ¡Sé el primero en publicar uno!</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
 
