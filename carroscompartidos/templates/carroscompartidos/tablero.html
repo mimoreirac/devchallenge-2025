@@ -14,15 +14,17 @@
 <div class="row">
   {% for anuncio in anuncios %}
   <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100 card-anuncio">
+    <div class="card h-100 card-anuncio position-relative">
       <div class="card-header">
         <i class="fa-solid fa-map-pin"></i>
         <strong>Desde:</strong> {{ anuncio.desde_donde }}
       </div>
       <div class="card-body">
         <h5 class="card-title">
+          <a href="{% url 'detalle_anuncio' anuncio.pk %}" class="stretched-link text-decoration-none text-reset">
             <i class="fa-solid fa-route"></i>
             Hacia: {{ anuncio.hacia_donde }}
+          </a>
         </h5>
         <p class="card-text">
           <i class="fa-solid fa-user"></i> <strong>Conductor:</strong> {{ anuncio.conductor.username }}<br />
@@ -32,7 +34,7 @@
       </div>
       <div class="card-footer d-flex justify-content-between align-items-center">
         {% if request.user == anuncio.conductor %}
-        <a href="{% url 'editar_anuncio' anuncio.pk %}" class="btn btn-sm btn-outline-light">
+        <a href="{% url 'editar_anuncio' anuncio.pk %}" class="btn btn-sm btn-outline-light position-relative z-1">
             <i class="fa-solid fa-pencil"></i> Editar
         </a>
         {% endif %}
