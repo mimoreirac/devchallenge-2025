@@ -1,6 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
+numero_contacto = models.CharField(max_length=10)
 
 # Create your models here.
 class Anuncio(models.Model):
@@ -18,4 +18,4 @@ class Anuncio(models.Model):
     hora_llegada = models.TimeField()
     desde_donde = models.CharField(max_length=100)
     hacia_donde = models.CharField(max_length=100)
-    numero_contacto = PhoneNumberField(blank=False)
+    numero_contacto = models.CharField(max_length=10)
