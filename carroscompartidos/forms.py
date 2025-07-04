@@ -8,11 +8,29 @@ class AnuncioForm(forms.ModelForm):
     class Meta:
         model = Anuncio
         exclude = ("conductor",)
+        fields = [
+            "desde_donde",
+            "hacia_donde",
+            "hora_salida",
+            "hora_llegada",
+            "sector",
+            "numero_contacto",
+        ]
         widgets = {
-            "hora_salida": forms.TimeInput(attrs={"type": "time"}),
-            "hora_llegada": forms.TimeInput(attrs={"type": "time"}),
-            "numero_contacto": forms.TextInput(attrs={"type": "tel"}),
+            "desde_donde": forms.TextInput(attrs={"class": "form-control"}),
+            "hacia_donde": forms.TextInput(attrs={"class": "form-control"}),
+            "hora_salida": forms.TimeInput(
+                attrs={"class": "form-control", "type": "time"}
+            ),
+            "hora_llegada": forms.TimeInput(
+                attrs={"class": "form-control", "type": "time"}
+            ),
+            "sector": forms.Select(attrs={"class": "form-select"}),
+            "numero_contacto": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "e.g., 0991234567"}
+            ),
         }
+
 
 class CustomSignupForm(SignupForm):
     def clean_email(self):
@@ -23,4 +41,3 @@ class CustomSignupForm(SignupForm):
                 code="invalid_email_domain",
             )
         return email
-
