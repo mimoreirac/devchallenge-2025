@@ -1,4 +1,11 @@
-# DevChallenge PUCE - 2025
+# Carros Compartidos PUCE - Dev Challenge 2025
+
+![Carros Compartidos PUCE](Dashboard.png)
+
+Bienvenido al repositorio de Carros Compartidos PUCE, una app web para el agendamiento de viajes compartidos en la comunidad universitaria PUCE.
+
+Impulsemos el transporte sostenible y ecológico!
+
 
 ## Instalación del ambiente
 
