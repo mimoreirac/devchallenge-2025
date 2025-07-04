@@ -27,7 +27,7 @@ class AnuncioForm(forms.ModelForm):
             ),
             "sector": forms.Select(attrs={"class": "form-select"}),
             "numero_contacto": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "e.g., 0991234567"}
+                attrs={"class": "form-control", "placeholder": "ej, 0991234567"}
             ),
         }
 
