@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Anuncios</title>
+</head>
+<body>
+    <h1>Anuncios de Carros Compartidos</h1>
+    <a href="{% url 'anuncio-create' %}">Crear nuevo anuncio</a>
+    <ul>
+        {% for anuncio in anuncios %}
+            <li>
+                {{ anuncio }} - Contacto: {{ anuncio.numero_contacto }}
+                <a href="{% url 'anuncio-update' pk=anuncio.pk %}">Editar</a>
+            </li>
+        {% empty %}
+            <li>No hay anuncios disponibles.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
