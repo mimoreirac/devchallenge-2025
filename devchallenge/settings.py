@@ -37,17 +37,19 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "carroscompartidos",
+    "allauth_ui",
     "allauth",
     "allauth.account",
     "widget_tweaks",
     "slippers",
-    "carroscompartidos",
     "phonenumber_field",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -61,7 +63,7 @@ ROOT_URLCONF = "devchallenge.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -109,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = "es-EC"
+LANGUAGE_CODE = "es"
 
 TIME_ZONE = "America/Guayaquil"
 
@@ -123,6 +125,10 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -134,3 +140,18 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by email
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+ALLAUTH_UI_THEME = "dracula"
+
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_CHANGE_EMAIL = True
+
+ACCOUNT_FORMS = {
+    "signup": "carroscompartidos.forms.CustomSignupForm",
+}
+
+LOGIN_REDIRECT_URL = "tablero"

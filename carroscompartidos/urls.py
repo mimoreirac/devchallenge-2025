@@ -1,8 +1,9 @@
 from django.urls import path
-from . import views
-from .views import AnuncioDetalleView
+from .views import AnuncioCreateView, AnuncioListView, AnuncioUpdateView, AnuncioDetalleView
 
 urlpatterns = [
-    path("", views.tablero_principal, name="tablero_principal"),
-    path("anuncios/<int:pk>/", AnuncioDetalleView.as_view(), name="detalle-anuncio"),
+    path("", AnuncioListView.as_view(), name="tablero"),
+    path("anuncios/crear/", AnuncioCreateView.as_view(), name="crear_anuncio"),
+    path("anuncios/<int:pk>/editar/", AnuncioUpdateView.as_view(), name="editar_anuncio"),
+    path("anuncios/<int:pk>/", AnuncioDetalleView.as_view(), name="detalle_anuncio"),
 ]

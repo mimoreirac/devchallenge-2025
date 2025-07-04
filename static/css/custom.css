@@ -1,0 +1,8 @@
+.card-anuncio {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-anuncio:hover {
+  transform: scale(1.03);
+}
+
